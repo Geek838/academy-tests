@@ -1,4 +1,4 @@
-import ContactUs from "../pages/contact-us";
+import ContactUs from "../pages/Contact-us";
 
 describe('Navigate to contact page', () => {
     it('Should open contact page and validate it', async () => {
