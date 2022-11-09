@@ -13,8 +13,14 @@ describe('Perform verifications', function () {
         const defaultTasks = ['Go to potion class', 'Buy new robes', 'Practice magic']
         expect(defaultTasks).toEqual(await ToDo.listItems())
     });
-    it('should add new task', async function () {
+    it('should add new task and verify addition', async function () {
        await ToDo.addTask('New task')
         expect(await ToDo.listItems()).toContain('New task')
+    });
+    it('should add new task and remove it from the list',async function () {
+        await ToDo.addTask('For removal')
+        await ToDo.deleteTask('For removal')
+        await browser.pause(2000)
+        expect(await ToDo.listItems()).not.toContain('For removal')
     });
 });

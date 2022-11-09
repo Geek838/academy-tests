@@ -4,8 +4,8 @@ class ToDo {
     get list() { return $$("//div[@id='container']/ul/li") }
     get deleteBtn() { return $$(".fa-trash") }
 
-    listItems(){
-        return this.list.map(item => item.getText())
+    async listItems(){
+        return await this.list.map(item => item.getText())
     }
     async addTask(task) {
         if(await this.input.isDisplayed() === false) {
@@ -27,8 +27,9 @@ class ToDo {
     }
 
     async deleteTask(task){
-        let index = await this.list.findIndex(task)
-        await this.deleteBtn[index].click()
+        const allItems = await this.list.map(item => item.getText())
+        const index = allItems.indexOf(task)
+        await this.deleteBtn[index].moveTo().then(this.deleteBtn[index].click())
     }
 
 }
