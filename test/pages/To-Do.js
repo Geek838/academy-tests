@@ -21,9 +21,10 @@ class ToDo {
     }
 
     async deleteAllTasks(){
-        for(let i = 0; i < this.list.length; i++){
-            await this.deleteBtn[i].click()
-        }
+        const allItems = await this.list.map(item => item.getText())
+        for(let i = 0; i < allItems.length; i++){
+        await this.deleteBtn[i].moveTo().then(this.deleteBtn[i].click())
+    }
     }
 
     async deleteTask(task){

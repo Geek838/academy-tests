@@ -17,10 +17,16 @@ describe('Perform verifications', function () {
        await ToDo.addTask('New task')
         expect(await ToDo.listItems()).toContain('New task')
     });
+    it('should remove all tasks from the list', async function () {
+        await ToDo.deleteAllTasks()
+        await browser.pause(1000)
+        expect(await ToDo.listItems()).toEqual([])
+    });
     it('should add new task and remove it from the list',async function () {
         await ToDo.addTask('For removal')
         await ToDo.deleteTask('For removal')
-        await browser.pause(2000)
+        await browser.pause(1000)
         expect(await ToDo.listItems()).not.toContain('For removal')
     });
 });
+
