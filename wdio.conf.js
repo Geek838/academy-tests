@@ -21,7 +21,7 @@ exports.config = {
     // will be called from there.
     //
     specs: [
-        './test/specs/home.spec.js'
+        './test/specs/fileUpload.spec.js'
     ],
     // Patterns to exclude.
     exclude: [
